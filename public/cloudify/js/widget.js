@@ -478,6 +478,16 @@ $(function () {
                 return;
             }
             widgetState.onStop();
+        } else if ( msg.name == "update_skin"){
+            var colorCode;
+            if (msg.value == "Red") {
+                colorCode = '#ff0000';
+            } else if (msg.value == "Green") {
+                colorCode = '#00ff00';
+            } else if (msg.value == "Blue") {
+                colorCode = '#0000ff';
+            }
+            $.postMessage(JSON.stringify({name:'change_color', value: colorCode}), origin_page_url, parent);
         }
      }, origin_page_host ); // origin_page_host
 

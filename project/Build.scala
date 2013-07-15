@@ -12,7 +12,7 @@ object ApplicationBuild extends Build {
       "commons-io" % "commons-io" % "2.4"  ,
       "commons-collections" % "commons-collections" % "3.0"   ,
       "org.apache.commons" % "commons-exec" % "1.1"  ,
-    "commons-configuration" % "commons-configuration" % "1.9",
+      "commons-configuration" % "commons-configuration" % "1.9",
       "org.jclouds" % "jclouds-allcompute" % "1.5.1"  ,
       "org.jclouds.driver" % "jclouds-sshj" % "1.5.0"  ,
       "com.thoughtworks.xstream" % "xstream" % "1.4.3"  ,
@@ -21,6 +21,7 @@ object ApplicationBuild extends Build {
       "com.google.guava" % "guava" % "13.0.1"  ,
       "commons-validator" % "commons-validator" % "1.4.0",
       "play" % "spring_2.9.1" % "2.0"  ,
+     // "org.cloudify" % "rest-client" % "2.6.0-SNAPSHOT",
       "mysql" % "mysql-connector-java" % "5.1.18"  ,
       "commons-lang" % "commons-lang" % "2.3",
       "com.typesafe" %% "play-plugins-mailer" % "2.0.4",
@@ -33,6 +34,9 @@ object ApplicationBuild extends Build {
     val main = PlayProject(appName, appVersion, appDependencies, mainLang = JAVA).settings(
       // Add your own project settings here
        resolvers += "TAMU Release Repository" at "https://maven.library.tamu.edu/content/repositories/releases/"
+
+      // resolvers += "GS S3" at "https://s3-eu-west-1.amazonaws.com/gigaspaces-maven-repository-eu"
+
     )
 
 }
