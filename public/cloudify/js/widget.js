@@ -105,6 +105,7 @@ $(function () {
             $project.val(project);
             $key.val(key);
             $secretKey.val(secretKey);
+            $.postMessage(JSON.stringify({name: 'set_advanced', project : project, key : key, secretKey : secretKey}), origin_page_url , parent );
         }else{
             return { project : $project.val(), key : $key.val(), secretKey : $secretKey.val() }
         }
@@ -304,8 +305,9 @@ $(function () {
         }
 
         function write_log(message, class_name) {
-          $dom.append($("<li/>", {html: message}).addClass(class_name));
-          $dom.scrollTop($dom[0].scrollHeight);
+            $dom.append($("<li/>", {html: message}).addClass(class_name));
+            $dom.scrollTop($dom[0].scrollHeight);
+            $.postMessage(JSON.stringify({name: 'write_log', html: message, className: class_name}), origin_page_url , parent );
         }
 
 
@@ -382,6 +384,10 @@ $(function () {
 
     function handleUpdateStatusSuccess( data )
     {
+        if (data == null || data.status == null) {
+            return;
+        }
+
         $.postMessage( JSON.stringify({name:"widget_status", comment:"status_was_updated", status:data.status}), origin_page_url , parent );
         if ( data.status.timeleft ) {
             $("#time_left").show();
@@ -478,18 +484,8 @@ $(function () {
                 return;
             }
             widgetState.onStop();
-        } else if ( msg.name == "update_skin"){
-            var colorCode;
-            if (msg.value == "Red") {
-                colorCode = '#ff0000';
-            } else if (msg.value == "Green") {
-                colorCode = '#00ff00';
-            } else if (msg.value == "Blue") {
-                colorCode = '#0000ff';
-            }
-            $.postMessage(JSON.stringify({name:'change_color', value: colorCode}), origin_page_url, parent);
         }
-     }, origin_page_host ); // origin_page_host
+    }, origin_page_host ); // origin_page_host
 
 
     function isEmpty( str ){
@@ -522,11 +518,11 @@ $(function () {
         widgetState.showStopButton();
         if ( !widgetState.isValid() ) {
             var advancedData = advanced();
-			var playData = { apiKey : params["apiKey"], "project" : advancedData.project, "key" : advancedData.key, "secretKey":advancedData.secretKey };
+            var playData = { apiKey : params["apiKey"], "project" : advancedData.project, "key" : advancedData.key, "secretKey":advancedData.secretKey };
             widgetLog.appendOrOverride(["Acquiring machine..."]);
             $.ajax(
                 { type:"POST",
-                  url : "/widget/start?" + $.param(playData),
+                    url : "/widget/start?" + $.param(playData),
                     success: function (data, textStatus, jqXHR) {
                         var state = data.status.state.toLowerCase();
                         if (state == "error" || state == "stopped") {
@@ -566,33 +562,33 @@ $(function () {
     }
 
     function stop_instance_btn_handler() {
-    if (!confirm("Are you sure you want to stop the instance?")) {
-      return;
-    }
+        if (!confirm("Are you sure you want to stop the instance?")) {
+            return;
+        }
         mixpanel.track("Stop Widget",{'page name' : $("#title" ).text(), 'url' : origin_page_url });
         $.postMessage( JSON.stringify({name:"stop_widget"}), origin_page_url , parent );
-    widgetState.showPlayButton();
-    if ( widgetState.instanceId()) {
-      $.post("/widget/"+ widgetState.instanceId() + "/stop?apiKey=" + params["apiKey"], {}, function (data) {
-        if (data && data.status && data.status.state == "error") {
-          widgetState.showPlayButton();
-          widgetLog.error(data.status.message );
-          return;
+        widgetState.showPlayButton();
+        if ( widgetState.instanceId()) {
+            $.post("/widget/"+ widgetState.instanceId() + "/stop?apiKey=" + params["apiKey"], {}, function (data) {
+                if (data && data.status && data.status.state == "error") {
+                    widgetState.showPlayButton();
+                    widgetLog.error(data.status.message );
+                    return;
+                }
+                stop_instance();
+            });
         }
-        stop_instance();
-      });
     }
-  }
 
 
-  function show_cloudify_ui_link( show ){
-      if ( show ){
-        $("#links").find("li:first").removeClass("mock");
-        $("#cloudify_dashboard_link").attr("href", "http://" + widgetState.publicIp() + ":8099/");
-      }else{
-          $("#links").find("li:first").addClass("mock");
-      }
-  }
+    function show_cloudify_ui_link( show ){
+        if ( show ){
+            $("#links").find("li:first").removeClass("mock");
+            $("#cloudify_dashboard_link").attr("href", "http://" + widgetState.publicIp() + ":8099/");
+        }else{
+            $("#links").find("li:first").addClass("mock");
+        }
+    }
 
 
     function show_custom_link( enabled ) {
@@ -604,7 +600,7 @@ $(function () {
             else {
                 $( "#links" ).append( $( custom_link ) );
             }
-          $("#custom_link" ).removeClass("mock");
+            $("#custom_link" ).removeClass("mock");
         }else{
             $("#custom_link" ).addClass("mock");
         }
