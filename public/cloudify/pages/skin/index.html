@@ -1,19 +1,70 @@
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="/style/widget.css">
+
+        <style>
+            body { background-repeat: no-repeat;}
+            #start_btn {left: 470px;}
+            #stop_btn {left: 470px;}
+            #log {left: 30px;}
+            #footer {top: 430px;}
+            .advanced_section {left: 300px; top: 250px;}
+        </style>
+
         <script src="/public/js/jquery.min.js"></script>
         <script type="text/javascript" src="/public/js/jquery.ba-postmessage.min.js"></script>
-        <script src="/public/js/skin/green.js"></script>
+        <script src="/public/js/skin/main.js"></script>
     </head>
     <body>
-        <h1> This is green skin </h1>
+
+        <a herf="#" id="start_btn" class="button"></a>
+        <a herf="#" id="stop_btn" class="button" style="display:none;"></a>
+
+        <ul id="log"></ul>
+
+        <div class="advanced_section">
+            <div class="remember_creds">
+                <div class="remember_me_title">Remember me?</div>
+                <div class="remember_option"><button class="yes" onclick="$(this).trigger('yes');">Yes</button></div>
+                <div class="remember_option"><button class="no" onclick="$(this).trigger('no');">No</button></div>
+            </div>
+            <div class="advanced_header">
+                <a href="javascript:void(0)" class="advanced_title" onclick="$(this).closest('.advanced_section').toggleClass('collapsed');">Advanced</a>
+                <a id="pemFileLink" class="download-link download-pem-link" href="javascript:void(0)"> PEM </a>
+            </div>
+            <!-- need to set autocomplete=off explicitly in order to turn off the browser's built-in autocomplete -->
+            <form class="advanced_form" autocomplete="off">
+                <input name="project_name" autocomplete="off" placeholder="project"/>
+                <input name="hpcs_key" autocomplete="off" placeholder="HPCS Key"/>
+                <input name="hpcs_secret_key" placeholder="HPCS Secret Key" type="password"/>
+                <div class="form-footer-links">
+                    <a class="form-footer-links" href="http://youtu.be/lHtOBXpouyo" target="_blank">Help</a>
+                    <a style="display:none" id="hp_console_link" class="form-footer-links" href="http://console.hpcloud.com" target="_blank">HP Console</a>
+                </div>
+                <input type="submit" class="hidden" value="submit"/>
+            </form>
+        </div>
+
+        <!--<a id="show_advanced" href="#"><img src="/img/widget_advanced_collapsed.png"></a>-->
+        <!--<div id="advanced" style="display:none;">-->
+            <!--<a id="hide_advanced" href="#"><img src="/img/widget_advanced_head.png"></a>-->
+            <!--<form>-->
+                <!--<input name="hpcs_key" placeholder="HPCS Key">-->
+                <!--<input name="hpcs_secret_key" placeholder="HPCS Secret Key">-->
+            <!--</form>-->
+        <!--</div>-->
+
+        <div id="footer">
+            Powered by: <a href="http://hpcloud.com" target="_blank"><img class="brand_btns" src="/img/hp_cloud_icon.png"></a>
+            <a href="http://cloudifysource.org" target="_blank"><img class="brand_btns" src="/img/cloudify_icon.png"></a>
+            <a herf="#" id="patent_pending">&nbsp;&nbsp;(Patent Pending)</a>
+            <div class="put_left">
+                <a class="share_link" id="facebook_share_link"  href="#"><img src="/img/share_facebook.png"></a>
+                <a class="share_link" id="google_plus_share_link" href="#"><img src="/img/share_google.png"></a>
+                <a class="share_link" id="twitter_share_link" href="#"><img src="/img/share_twitter.png"></a>
+            </div>
+        </div>
 
         <iframe id="iframe" style="display:none" src="http://localhost:9000/widget/widget?apiKey=34d6bebc-7b0c-4339-92ec-0313c2fb51b0&title=Launch%20MongoDB&origin_page_url=http://localhost:9000/demos/2/34d6bebc-7b0c-4339-92ec-0313c2fb51b0&video_url=http://www.youtube.com/embed/w5qr4sx5Vt0"></iframe>
-
-        <div id="widgetBg" style="background-color: #00ff00; width: 200px; height: 200px;">
-            <input type="button" value="Red" id="redBtn"/>
-            <input type="button" value="Green" id="greenBtn"/>
-            <input type="button" value="Blue" id="blueBtn"/>
-            <input type="text" id="recievedMsg"/>
-        </div>
     </body>
 </html>
