@@ -177,7 +177,7 @@ $(function () {
     var params = {};
     var hash;
     var hashes = window.location.search.substring(1).split('&');
-    console.log(["using search tearm", hashes ]);
+    //console.log(["using search tearm", hashes ]);
     for(var i = 0; i < hashes.length; i++)
     {
       hash = hashes[i].split('=');
