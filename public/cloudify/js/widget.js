@@ -501,13 +501,14 @@ $(function () {
     function start_instance_btn_handler()
     {
         var myUrl = origin_page_url;
-        console.log(["sending message", myUrl, parent ] );
-        console.log("after message");
+        //console.log(["sending message", myUrl, parent ] );
+        //console.log("after message");
         if ( is_requires_login() && !params["userId"] ){
             $.postMessage( JSON.stringify({name:"require_login"}), myUrl , parent );
             return;
         }else{
-            $.postMessage( JSON.stringify({name:"play_widget"}), myUrl , parent );
+//            $.postMessage( JSON.stringify({name:"play_widget"}), myUrl , parent );
+            $.postMessage( JSON.stringify({name:"play_widget"}), origin_page_url , parent );
         }
         widgetState.isPlaying(true);
 
