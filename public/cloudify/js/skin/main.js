@@ -10,7 +10,11 @@ $(function(){
         $("#start_btn").on("click", function() {
             var iframe = $("#iframe");
             updateButtonState('play');
-            $.postMessage(JSON.stringify({name: 'play_widget', advanced: getAdvanced()}), postUrl, iframe.get(0).contentWindow);
+            var postObj = {name: 'play_widget'};
+            if (getAdvanced().project !== "" && getAdvanced().key !== "" && getAdvanced().secretKey !== "") {
+                postObj.advanced = getAdvanced();
+            }
+            $.postMessage(JSON.stringify(postObj), postUrl, iframe.get(0).contentWindow);
         });
 
         $("#stop_btn").on("click", function() {
@@ -44,10 +48,10 @@ $(function(){
                 var msg = JSON.parse(e.data);
                 var $log = $("#log");
 
-                if (msg.name = 'write_log') {
+                if (msg.name == 'write_log') {
                     $log.append($("<li/>", {html: msg.html}).addClass(msg.className));
                     $log.scrollTop($log[0].scrollHeight);
-                } else if (msg.name = 'set_advanced') {
+                } else if (msg.name == 'set_advanced') {
                     var $advanced = $(".advanced_section");
                     var $project = $advanced.find("[name=project_name]");
                     var $key = $advanced.find("[name=hpcs_key]");
@@ -56,8 +60,8 @@ $(function(){
                     $project.val(msg.project);
                     $key.val(msg.key);
                     $secretKey.val(msg.secretKey);
-                } else if (msg.name == "state_update") {
-                    updateButtonState(msg.state);
+                } else if (msg.name == "widget_status") {
+                    updateButtonState(msg.status.state == "STOPPED" ? 'stop' : 'play');
                 }
             } catch (exception) {
                 console.log(["problem invoking callback for ", e, exception, callbacks]);
