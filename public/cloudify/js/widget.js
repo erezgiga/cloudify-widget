@@ -501,7 +501,7 @@ $(function () {
     function start_instance_btn_handler()
     {
         var myUrl = origin_page_url;
-        console.log(["sending message", myUrl, parent ] );
+        //console.log(["sending message", myUrl, parent ] );
         console.log("after message");
         if ( is_requires_login() && !params["userId"] ){
             $.postMessage( JSON.stringify({name:"require_login"}), myUrl , parent );
