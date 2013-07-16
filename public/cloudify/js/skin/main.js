@@ -1,5 +1,7 @@
 $(function(){
 
+    var postUrl = 'http://erez.cloudifysource.org';
+
     function init() {
         setButtons();
     }
@@ -7,12 +9,14 @@ $(function(){
     function setButtons() {
         $("#start_btn").on("click", function() {
             var iframe = $("#iframe");
-            $.postMessage(JSON.stringify({name: 'play_widget', advanced: getAdvanced()}), document.location.origin, iframe.get(0).contentWindow);
+            updateButtonState('play');
+            $.postMessage(JSON.stringify({name: 'play_widget', advanced: getAdvanced()}), postUrl, iframe.get(0).contentWindow);
         });
 
         $("#stop_btn").on("click", function() {
             var iframe = $("#iframe");
-            $.postMessage(JSON.stringify({name: 'stop_widget'}), document.location.origin, iframe.get(0).contentWindow);
+            updateButtonState('stop');
+            $.postMessage(JSON.stringify({name: 'stop_widget'}), postUrl, iframe.get(0).contentWindow);
         });
     }
 
@@ -23,6 +27,16 @@ $(function(){
         var $secretKey = $advanced.find("[name=hpcs_secret_key]");
 
         return {project : $project.val(), key : $key.val(), secretKey : $secretKey.val()};
+    }
+
+    function updateButtonState(state) {
+        if (state == 'play') {
+            $("#stop_btn").show();
+            $("#play_btn").hide();
+        } else if (state == 'stop') {
+            $("#stop_btn").hide();
+            $("#play_btn").show();
+        }
     }
 
     $.receiveMessage(function (e) {
@@ -42,9 +56,11 @@ $(function(){
                     $project.val(msg.project);
                     $key.val(msg.key);
                     $secretKey.val(msg.secretKey);
+                } else if (msg.name == "state_update") {
+                    updateButtonState(msg.state);
                 }
-            } catch (execption) {
-                console.log(["problem invoking callback for ", e, execption, callbacks]);
+            } catch (exception) {
+                console.log(["problem invoking callback for ", e, exception, callbacks]);
             }
         },
         function (origin) {

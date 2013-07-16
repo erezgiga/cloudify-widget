@@ -267,10 +267,12 @@ $(function () {
         this.showStopButton = function(){
             $("#stop_btn").show();
             $("#play_btn").hide();
+            updateState('stop');
         };
         this.showPlayButton = function(){
             $("#stop_btn").hide();
             $("#play_btn").show();
+            updateState('play');
         };
         this.onStop = function( handler ){
             if ( !handler ){
@@ -604,6 +606,10 @@ $(function () {
         }else{
             $("#custom_link" ).addClass("mock");
         }
+    }
+
+    function updateState(state) {
+        $.postMessage(JSON.stringify({name: 'state_update', state: state}), origin_page_url, parent);
     }
 
 
