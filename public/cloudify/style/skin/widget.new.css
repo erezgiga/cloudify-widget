@@ -52,6 +52,7 @@ body {
 }
 
 #footer {
+    color: #fff;
     font-size: 12px;
     position: absolute;
     top: 330px;
@@ -107,6 +108,16 @@ body {
 #footer #cloudifysLogo {
     left: 23px;
     position: relative;
+}
+
+#footer #patent_pending {
+    font-size: 10px;
+    top: 13px;
+    left: 218px;
+    list-style-type: none;
+    position: absolute;
+    color: #fff;
+    font-family: "Helvetica Neue";
 }
 
 #logContainer {
@@ -314,16 +325,6 @@ body {
     top: 37px;
     position: relative;
     left: 37px;
-}
-
-#patent_pending {
-  font-size: 10px;
-  top: 13px;
-  left: 218px;
-  list-style-type: none;
-  position: absolute;
-  color: black;
-  font-family: "Helvetica Neue";
 }
 
 #time_left {
