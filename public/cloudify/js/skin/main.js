@@ -9,19 +9,35 @@ $(function(){
     function setButtons() {
         $("#start_btn").on("click", function() {
             var iframe = $("#iframe");
-            updateButtonState('play');
             var postObj = {name: 'play_widget'};
             if (getAdvanced().project !== "" && getAdvanced().key !== "" && getAdvanced().secretKey !== "") {
                 postObj.advanced = getAdvanced();
             }
+
+            updateButtonState('play');
+
             $.postMessage(JSON.stringify(postObj), postUrl, iframe.get(0).contentWindow);
         });
 
         $("#stop_btn").on("click", function() {
             var iframe = $("#iframe");
+
             updateButtonState('stop');
+
             $.postMessage(JSON.stringify({name: 'stop_widget'}), postUrl, iframe.get(0).contentWindow);
         });
+
+        var $embedCodeBox = $("#embed-code-box").hide();
+        $embedCodeBox.val($.trim($embedCodeBox.val()));
+
+        $("#embed_btn").click(function() {
+            $embedCodeBox.toggle();
+        });
+        $("#embed-code-box .close").click(function() {
+            $embedCodeBox.hide();
+        });
+
+        updateButtonState('stop');
     }
 
     function getAdvanced() {
@@ -36,10 +52,10 @@ $(function(){
     function updateButtonState(state) {
         if (state == 'play') {
             $("#stop_btn").show();
-            $("#play_btn").hide();
+            $("#start_btn").hide();
         } else if (state == 'stop') {
             $("#stop_btn").hide();
-            $("#play_btn").show();
+            $("#start_btn").show();
         }
     }
 
@@ -71,6 +87,8 @@ $(function(){
             return true;
         }
     );
+
+
 
     init();
 });

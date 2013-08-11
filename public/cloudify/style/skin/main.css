@@ -1,0 +1,25 @@
+body {
+    background-repeat: no-repeat;
+}
+
+#start_btn {
+    left: 470px;
+    color: transparent;
+}
+
+#stop_btn {
+    left: 470px;
+    color: transparent;
+}
+
+#log {
+    left: 30px;
+}
+
+#footer {
+    top: 430px;
+}
+
+.advanced_section {
+    left: 300px; top: 250px;
+}
