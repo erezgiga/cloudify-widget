@@ -303,7 +303,7 @@ body {
     cursor: pointer;
 }
 
-#start_btn {
+#play_btn {
     /*background: url("/img/play_button_sprite.png") 0 -336px no-repeat;*/
     width: 0px;
     height: 0px;
