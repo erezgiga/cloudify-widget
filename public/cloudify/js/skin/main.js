@@ -41,7 +41,7 @@ $(function(){
     }
 
     function getAdvanced() {
-        var $advanced = $(".advanced_section");
+        var $advanced = $("#advanced");
         var $project = $advanced.find("[name=project_name]");
         var $key = $advanced.find("[name=hpcs_key]");
         var $secretKey = $advanced.find("[name=hpcs_secret_key]");
@@ -68,7 +68,7 @@ $(function(){
                     $log.append($("<li/>", {html: msg.html}).addClass(msg.className));
                     $log.scrollTop($log[0].scrollHeight);
                 } else if (msg.name == 'set_advanced') {
-                    var $advanced = $(".advanced_section");
+                    var $advanced = $("#advanced");
                     var $project = $advanced.find("[name=project_name]");
                     var $key = $advanced.find("[name=hpcs_key]");
                     var $secretKey = $advanced.find("[name=hpcs_secret_key]");
