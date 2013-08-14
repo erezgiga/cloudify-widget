@@ -7,7 +7,7 @@ $(function(){
     }
 
     function setButtons() {
-        $("#start_btn").on("click", function() {
+        $("#play_btn").on("click", function() {
             var iframe = $("#iframe");
             var postObj = {name: 'play_widget'};
             if (getAdvanced().project !== "" && getAdvanced().key !== "" && getAdvanced().secretKey !== "") {
@@ -52,10 +52,10 @@ $(function(){
     function updateButtonState(state) {
         if (state == 'play') {
             $("#stop_btn").show();
-            $("#start_btn").hide();
+            $("#play_btn").hide();
         } else if (state == 'stop') {
             $("#stop_btn").hide();
-            $("#start_btn").show();
+            $("#play_btn").show();
         }
     }
 
