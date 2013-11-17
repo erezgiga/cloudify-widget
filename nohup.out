@@ -1,0 +1,52 @@
+[0m[[0minfo[0m] [0mLoading project definition from /Users/erezcarmel/Projects/cloudify-widget/project[0m
+[0m[[0minfo[0m] [0mSet current project to cloudify-widget (in build file:/Users/erezcarmel/Projects/cloudify-widget/)[0m
+[32m
+(Starting server. Type Ctrl+D to exit logs, the server will remain in background)
+[0m
+Play server process ID is 5133
+12 Aug 2013 11:29:02.781 [main                                    ] DEBUG application                              - Loading default application context: application-context.ml
+Oops, cannot start the server.
+java.lang.RuntimeException: Unable to obtain spring bean because the application context has not been defined.
+	at play.modules.spring.Spring.getBean(Spring.java:10)
+	at server.ApplicationContext.get(ApplicationContext.java:65)
+	at Global.onStart(Global.java:56)
+	at play.core.j.JavaGlobalSettingsAdapter.onStart(JavaGlobalSettingsAdapter.scala:16)
+	at play.api.GlobalPlugin.onStart(Global.scala:134)
+	at play.api.Play$$anonfun$start$1.apply(Play.scala:60)
+	at play.api.Play$$anonfun$start$1.apply(Play.scala:60)
+	at scala.collection.LinearSeqOptimized$class.foreach(LinearSeqOptimized.scala:59)
+	at scala.collection.immutable.List.foreach(List.scala:45)
+	at play.api.Play$.start(Play.scala:60)
+	at play.core.StaticApplication.<init>(ApplicationProvider.scala:51)
+	at play.core.server.NettyServer$.createServer(NettyServer.scala:133)
+	at play.core.server.NettyServer$$anonfun$main$5.apply(NettyServer.scala:162)
+	at play.core.server.NettyServer$$anonfun$main$5.apply(NettyServer.scala:161)
+	at scala.Option.map(Option.scala:133)
+	at play.core.server.NettyServer$.main(NettyServer.scala:161)
+	at play.core.server.NettyServer.main(NettyServer.scala)
+[0m[[0minfo[0m] [0mLoading project definition from /Users/erezcarmel/Projects/cloudify-widget/project[0m
+[0m[[0minfo[0m] [0mSet current project to cloudify-widget (in build file:/Users/erezcarmel/Projects/cloudify-widget/)[0m
+[32m
+(Starting server. Type Ctrl+D to exit logs, the server will remain in background)
+[0m
+Play server process ID is 6953
+12 Aug 2013 17:10:33.978 [main                                    ] DEBUG application                              - Loading default application context: application-context.ml
+Oops, cannot start the server.
+java.lang.RuntimeException: Unable to obtain spring bean because the application context has not been defined.
+	at play.modules.spring.Spring.getBean(Spring.java:10)
+	at server.ApplicationContext.get(ApplicationContext.java:65)
+	at Global.onStart(Global.java:56)
+	at play.core.j.JavaGlobalSettingsAdapter.onStart(JavaGlobalSettingsAdapter.scala:16)
+	at play.api.GlobalPlugin.onStart(Global.scala:134)
+	at play.api.Play$$anonfun$start$1.apply(Play.scala:60)
+	at play.api.Play$$anonfun$start$1.apply(Play.scala:60)
+	at scala.collection.LinearSeqOptimized$class.foreach(LinearSeqOptimized.scala:59)
+	at scala.collection.immutable.List.foreach(List.scala:45)
+	at play.api.Play$.start(Play.scala:60)
+	at play.core.StaticApplication.<init>(ApplicationProvider.scala:51)
+	at play.core.server.NettyServer$.createServer(NettyServer.scala:133)
+	at play.core.server.NettyServer$$anonfun$main$5.apply(NettyServer.scala:162)
+	at play.core.server.NettyServer$$anonfun$main$5.apply(NettyServer.scala:161)
+	at scala.Option.map(Option.scala:133)
+	at play.core.server.NettyServer$.main(NettyServer.scala:161)
+	at play.core.server.NettyServer.main(NettyServer.scala)
