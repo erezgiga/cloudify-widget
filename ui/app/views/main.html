@@ -1,14 +1,14 @@
 <div class="mainContainer">
-
+    <div class="viewTitle">Select the recipes to show in the catalog</div>
     <select class="selectionBox" size="10" multiple="true" id="availableWidgets" ng-options="widget.productName for widget in availableWidgets" ng-model="selectedAvailableWidgets"></select>
 
     <div id="selectionButtons">
-        <button class="selectionBtn" id="addBtn" ng-click="addWidget()">Add</button>
-        <button class="selectionBtn" id="removeBtn" ng-click="removeWidget()">Remove</button>
+        <button class="selectionBtn" id="addBtn" ng-click="addWidget()">Add ></button>
+        <button class="selectionBtn" id="removeBtn" ng-click="removeWidget()">< Remove</button>
     </div>
 
     <select class="selectionBox" size="10" multiple="true" id="enabledWidgets" ng-options="widget.productName for widget in enabledWidgets" ng-model="selectedEnabledWidgets"></select>
 
-    <button class="selectionBtn" id="listSubmitBtn" ng-click="nextClick()">Next</button>
+    <button class="selectionBtn" id="listSubmitBtn" ng-click="nextClick()" ng-class="{'selectionBtn disabled': isEnabledListEmpty(), 'selectionBtn': !isEnabledListEmpty()}">Next ></button>
 
 </div>

@@ -1,14 +1,19 @@
 body {
-    background: #f3f3f3;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Helvetica Neue Ultra Light", Helvetica, Arial, sans-serif;
     color: #333;
     margin: 0;
 }
 
 h1 {
     text-align: center;
-    border-bottom: 2px solid #DADADA;
     padding-bottom: 20px;
+    background-color: rgb(248, 248, 248);
+    margin-top: 0;
+    height: 40px;
+    line-height: 58px;
+    color: #000;
+    font-weight: normal;
+    border-bottom: 1px solid rgb(200, 199, 204);
 }
 
 .mainContainer {
@@ -16,6 +21,13 @@ h1 {
     position: relative;
     margin-right: auto;
     margin-left: auto;
+}
+
+.viewTitle {
+    width: 900px;
+    text-align: center;
+    height: 40px;
+    font-size: 18px;
 }
 
 .addHtmlContainer {
@@ -28,9 +40,11 @@ h1 {
     height: 300px;
     float: left;
     font-size: 18px;
-    border: 1px solid #e8e8e8;
+    border: 1px solid rgb(200, 199, 204);
     padding-left: 10px;
     padding-top: 10px;
+    font-family: "Helvetica Neue Ultra Light", Helvetica, Arial, sans-serif;
+    font-weight:300;
 }
 
 #selectionButtons {
@@ -57,12 +71,16 @@ h1 {
     color: #fff;
 }
 
+
+
 #addBtn {
-    background-color: #00ab00;
+    color: #69bd45;
+    background-color: transparent;
 }
 
 #removeBtn {
-    background-color: #df0000;
+    color: #ee3658;
+    background-color: transparent;
 }
 
 #htmlInput {
@@ -73,13 +91,20 @@ h1 {
     font-size: 18px;
     padding-left: 10px;
     padding-top: 10px;
+    font-family: "Helvetica Neue Ultra Light", Helvetica, Arial, sans-serif;
+    font-weight:300;
 }
 
 #listSubmitBtn {
     margin-top: 10px;
     margin-right: 5px;
-    background-color: #cecece;
+    background-color: transparent;
     float: right;
+    color: #0099cc;
+}
+
+#listSubmitBtn.disabled {
+    color: rgb(200, 199, 204);
 }
 
 #htmlSubmitBtn {
@@ -87,6 +112,12 @@ h1 {
     float: right;
     top: 10px;
     right: 0px;
+    background-color: transparent;
+    color: #0099cc;
+}
+
+#htmlSubmitBtn.disabled, #listSubmitBtn.disabled, #previewBtn.disabled {
+    color: rgb(200, 199, 204);
 }
 
 #previewBtn {
@@ -94,6 +125,8 @@ h1 {
     right: 10px;
     top: 10px;
     float: right;
+    background-color: transparent;
+    color: #0099cc;
 }
 
 #backBtn {
@@ -101,4 +134,6 @@ h1 {
     float: left;
     top: 10px;
     right: 0px;
+    background-color: transparent;
+    color: #0099cc;
 }

@@ -34,11 +34,18 @@ angular.module('widgetApp')
         };
 
         $scope.nextClick = function() {
+            if ($scope.isEnabledListEmpty()) {
+                return;
+            }
             var data = widgetService.getCatalogData();
             data.widgets = $scope.enabledWidgets;
 
             widgetService.setCatalogData(data);
             $location.url('/addHtml');
+        };
+
+        $scope.isEnabledListEmpty = function() {
+            return $scope.enabledWidgets.length === 0;
         };
 
         function removeSelectedWidgets(arr1, arr2) {

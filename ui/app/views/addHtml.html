@@ -1,6 +1,7 @@
 <div class="mainContainer addHtmlContainer">
+    <div class="viewTitle">Add catalog HTML code</div>
     <textarea type="text" id="htmlInput" ng-model="html"></textarea>
-    <button class="selectionBtn" id="backBtn" ng-click="backClick()">Back</button>
-    <button class="selectionBtn" id="htmlSubmitBtn" ng-click="htmlSubmitClick()">Submit</button>
-    <button class="selectionBtn" id="previewBtn" ng-click="previewClick()">Preview</button>
+    <button class="selectionBtn" id="backBtn" ng-click="backClick()">< Back</button>
+    <button id="htmlSubmitBtn" ng-click="htmlSubmitClick()" ng-class="{'selectionBtn disabled': isHTMLEmpty(), 'selectionBtn': !isHTMLEmpty()}">Submit</button>
+    <button id="previewBtn" ng-click="previewClick()" ng-class="{'selectionBtn disabled': isHTMLEmpty(), 'selectionBtn': !isHTMLEmpty()}">Preview</button>
 </div>
